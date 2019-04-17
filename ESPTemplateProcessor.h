@@ -9,6 +9,7 @@
 #endif
 
 #include <FS.h>
+#include <ArduinoJson.h>
 
 #ifdef ESP32
 #include <SPIFFS.h>
@@ -23,7 +24,7 @@ class ESPTemplateProcessor {
     {
     }
 
-    bool send(const String& filePath, ProcessorCallback& processor, char bookend = '%', bool silentSerial = false)
+    bool send(const String& filePath, ProcessorCallback& processor, JsonObject& json, char bookend = '%', bool silentSerial = false)
     {
       // Open file.
       if(!SPIFFS.exists(filePath)) {
@@ -85,7 +86,7 @@ class ESPTemplateProcessor {
           }
 
           // Get substitution
-          String processed = processor(keyBuffer);
+          String processed = processor(keyBuffer, json);
           if(!silentSerial) {
             Serial.print("Lookup '"); Serial.print(keyBuffer); Serial.print("' received: "); Serial.println(processed);
           }
