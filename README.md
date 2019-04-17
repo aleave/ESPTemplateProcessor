@@ -1,6 +1,8 @@
-# ESPTemplateProcessor
+# ESPTemplateProcessor Json
 
 This library is designed to work with the [ESP8266 Arduino SDK](https://github.com/esp8266/Arduino) and [SPIFFS](https://github.com/esp8266/Arduino/blob/master/doc/filesystem.md).
+
+Compared to the original library, this takes an ArduinoJson object as reference to perform substitutions
 
 # Usage
 
